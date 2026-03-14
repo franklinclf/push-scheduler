@@ -92,7 +92,7 @@ export default function Home() {
           No employees match!
         </div>
       ) : (
-        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
           {filtered.map((employee) => (
             <EmployeeCardItem
               key={employee.id}
@@ -113,14 +113,17 @@ export default function Home() {
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
           role="presentation"
-          onClick={() => setActiveModalId(null)}
+          onMouseDown={(event) => {
+            event.preventDefault();
+            setActiveModalId(null);
+          }}
         >
           <div
             className="w-full max-w-md border border-slate-200 bg-white p-6 shadow-lg"
             role="dialog"
             aria-modal="true"
             aria-labelledby="period-modal-title"
-            onClick={(event) => event.stopPropagation()}
+            onMouseDown={(event) => event.stopPropagation()}
           >
             <div className="mb-4 flex items-start justify-between">
               <div>

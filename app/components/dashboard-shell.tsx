@@ -111,7 +111,7 @@ export function DashboardShell({ children }: ShellProps) {
             <Image src="/logo.svg" width={26} height={26} alt="Push logo" />
             <span className="text-lg font-semibold text-[#0D325F]">Push</span>
           </div>
-          <nav className="mt-2 flex flex-col text-sm font-medium text-slate-600">
+          <nav className="flex flex-col text-sm font-medium text-slate-600">
             {links.map((link) => {
               const active = pathname === link.href;
               return (
@@ -141,7 +141,7 @@ export function DashboardShell({ children }: ShellProps) {
         )}
 
         <main
-          className={`min-h-[calc(100vh-${HEADER_HEIGHT}px)] p-6 sm:p-6 lg:p-10 ${
+          className={`min-h-[calc(100vh-${HEADER_HEIGHT}px)] p-6 sm:p-6 lg:p-5 ${
             isLarge ? "lg:ml-60" : ""
           }`}
         >

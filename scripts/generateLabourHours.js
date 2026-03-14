@@ -1,8 +1,7 @@
-// Generates labour_hours.json by splitting shifts into time periods and aggregating by employee/date.
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import path from "node:path";
 
-const SOURCE_PATH = path.join(process.cwd(), "..", "data", "apertureLabsClocks.json");
+const SOURCE_PATH = path.join(process.cwd(), "./", "data", "apertureLabsClocks.json");
 const OUTPUT_DIR = path.join(process.cwd(), "data");
 const OUTPUT_PATH = path.join(OUTPUT_DIR, "labour_hours.json");
 
@@ -18,10 +17,10 @@ function formatDate(date) {
 
 function getPeriodKey(date) {
   const hour = date.getUTCHours();
-  if (hour >= 5 && hour < 12) return "period1"; // Morning
-  if (hour >= 12 && hour < 18) return "period2"; // Afternoon
-  if (hour >= 18 && hour < 23) return "period3"; // Evening
-  return "period4"; // Late Night
+  if (hour >= 5 && hour < 12) return "period1";
+  if (hour >= 12 && hour < 18) return "period2";
+  if (hour >= 18 && hour < 23) return "period3";
+  return "period4";
 }
 
 function getPeriodBoundary(date) {
@@ -39,7 +38,7 @@ function getPeriodBoundary(date) {
   if (hour < 12) return new Date(base + 12 * 60 * 60 * 1000);
   if (hour < 18) return new Date(base + 18 * 60 * 60 * 1000);
   if (hour < 23) return new Date(base + 23 * 60 * 60 * 1000);
-  return new Date(base + 24 * 60 * 60 * 1000 + 5 * 60 * 60 * 1000); // 5 AM next day
+  return new Date(base + 24 * 60 * 60 * 1000 + 5 * 60 * 60 * 1000);
 }
 
 function getMidnightBoundary(date) {

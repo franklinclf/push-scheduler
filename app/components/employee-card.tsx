@@ -13,7 +13,10 @@ export function EmployeeCardItem({ employee, open, onToggle }: Props) {
         <div className="text-lg font-semibold text-[#103b73]">{employee.name}</div>
         <button
           type="button"
-          onClick={onToggle}
+          onClick={(event) => {
+            event.stopPropagation();
+            onToggle();
+          }}
           className="text-xs font-semibold uppercase tracking-wide text-[#103b73] underline underline-offset-4"
         >
           {open ? "Hide periods" : "Show periods"}
