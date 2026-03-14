@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Push Scheduler
 
-## Getting Started
+Employee labour-hours dashboard built with Next.js 16 (app router) and Tailwind CSS 4.
 
-First, run the development server:
+### Quick start
 
 ```bash
+cd "/home/franklinclf/Downloads/full-stack-engineer 12.01.38PM (1)/full-stack-engineer/push-scheduler"
+npm install
+npm run generate:labour   # builds data/labour_hours.json from ../data/apertureLabsClocks.json
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 to see the UI. The layout matches the provided desktop and tablet mockups; the left nav collapses on smaller viewports, and the header keeps the user chip visible.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Data pipeline
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `scripts/generateLabourHours.js` splits each shift across the four time periods (Morning 5–12, Afternoon 12–18, Evening 18–23, Late Night 23–5) and across calendar days, rounding to 2 decimals.
+- It writes `data/labour_hours.json`, which the UI imports directly. Re-run the script if `data/apertureLabsClocks.json` changes.
 
-## Learn More
+### UI behavior
 
-To learn more about Next.js, take a look at the following resources:
+- Cards show the sum of hours per employee across all dates in `labour_hours.json`.
+- The filter input matches substrings in names case-insensitively; empty state text appears when nothing matches.
+- Responsive grid: 1 column on mobile, 2 on small screens, 3–4 on larger displays.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Notes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Palette and spacing follow the mockups; typography uses the bundled Geist font.
+- Metadata in `app/layout.tsx` updated to reflect the dashboard.
