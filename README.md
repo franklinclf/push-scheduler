@@ -5,7 +5,7 @@ Employee labour-hours dashboard built with Next.js 16 (app router) and Tailwind 
 ### Quick start
 
 ```bash
-cd "/home/franklinclf/Downloads/full-stack-engineer 12.01.38PM (1)/full-stack-engineer/push-scheduler"
+cd "/push-scheduler"
 npm install
 npm run generate:labour   # builds data/labour_hours.json from ../data/apertureLabsClocks.json
 npm run dev
